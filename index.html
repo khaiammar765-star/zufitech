@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZufiTech — Premium PC Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* KEKALKAN SEMUA CSS KAU DI SINI */
+    :root {
+      --brand-name: "ZufiTech";
+      --color-bg: #F7F6F3;
+      --color-surface: #FFFFFF;
+      --color-dark: #0E0E0E;
+      --color-text: #3A3A3A;
+      --color-muted: #888880;
+      --color-accent: #C8382A;
+      --color-accent-lt: #F0E8E7;
+      --color-border: #E2E0DC;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --max-width: 1160px;
+      --radius: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.18s ease; }
+    .btn-primary { background: var(--color-accent); color: #fff; }
+    .btn-primary:hover { background: #a82c20; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,56,42,0.25); }
+    .btn-ghost { background: transparent; color: var(--color-dark); border: 1.5px solid var(--color-border); }
+    .btn-ghost:hover { border-color: var(--color-dark); background: var(--color-dark); color: #fff; }
+
+    /* Nav */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,243,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--color-dark); letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--color-muted); letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--color-dark); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+
+    /* Hero */
+    .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -80px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, var(--color-accent-lt) 0%, transparent 70%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--color-accent-lt); color: var(--color-accent); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; margin-bottom: 20px; }
+    .hero-tag::before { content: '●'; font-size: 6px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(48px, 6vw, 76px); font-weight: 800; line-height: 0.95; color: var(--color-dark); letter-spacing: -0.01em; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--color-accent); }
+    .hero-sub { font-size: 17px; color: var(--color-muted); line-height: 1.65; max-width: 420px; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-visual { position: relative; min-height: 440px; background: var(--color-surface); border-radius: 12px; border: 1px solid var(--color-border); overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.08); } .hero-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pc-illustration { width: 70%; height: 70%; position: relative; }
+    .pc-tower { width: 120px; height: 180px; background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 8px; margin: 0 auto; position: relative; box-shadow: 4px 8px 32px rgba(0,0,0,0.35), inset 1px 1px 0 rgba(255,255,255,0.06); }
+    .pc-tower::before { content: ''; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--color-accent); border-radius: 2px; box-shadow: 0 0 12px var(--color-accent); }
+    .pc-tower::after { content: ''; position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; border-radius: 50%; border: 2px solid #333; background: #111; }
+    .pc-lights { position: absolute; top: 40px; right: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .pc-light { width: 8px; height: 8px; border-radius: 50%; animation: blink 2.4s infinite; }
+    .pc-light:nth-child(1) { background: var(--color-accent); animation-delay: 0s; }
+    .pc-light:nth-child(2) { background: #4A9EFF; animation-delay: 0.8s; }
+    .pc-light:nth-child(3) { background: #4AE89E; animation-delay: 1.6s; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+    .hero-visual-label { position: absolute; bottom: 20px; left: 20px; font-size: 11px; color: var(--color-muted); letter-spacing: 0.08em; }
+
+    /* Stats */
+    .stats-bar { border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); background: var(--color-surface); padding: 32px 0; }
+    .stats-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .stat { text-align: center; flex: 1; min-width: 120px; }
+    .stat-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--color-dark); line-height: 1; }
+    .stat-num span { color: var(--color-accent); }
+    .stat-label { font-size: 12px; color: var(--color-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+    .stat-divider { width: 1px; height: 48px; background: var(--color-border); }
+
+    /* Products & Filters (TAMBAHAN SIKIT UNTUK FILTER) */
+    .section { padding: 96px 0; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 800; color: var(--color-dark); line-height: 1.05; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--color-muted); max-width: 480px; line-height: 1.65; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 24px; flex-wrap: wrap; }
+    
+    .filter-group { display: flex; gap: 10px; }
+    .filter-btn { padding: 8px 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; color: var(--color-muted); text-transform: uppercase; }
+    .filter-btn.active, .filter-btn:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .product-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .product-visual { height: 180px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .product-body { padding: 24px; }
+    .product-tier { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 6px; }
+    .product-name { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--color-dark); margin-bottom: 10px; }
+    .product-specs { list-style: none; margin-bottom: 20px; }
+    .product-specs li { font-size: 13px; color: var(--color-muted); padding: 5px 0; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; }
+    .product-specs li:last-child { border-bottom: none; }
+    .spec-val { color: var(--color-dark); font-weight: 500; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+    .product-price { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--color-dark); }
+    .product-price small { font-size: 13px; font-weight: 400; color: var(--color-muted); font-family: var(--font-body); }
+
+    /* Sections lain dikekalkan sama */
+    .why-section { background: var(--color-dark); padding: 96px 0; }
+    .why-section .section-title { color: #fff; }
+    .why-section .section-label { color: var(--color-accent); }
+    .why-section .section-sub { color: #888; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; border: 2px solid #1E1E1E; border-radius: 10px; overflow: hidden; }
+    .feature-item { background: #111; padding: 40px 32px; transition: background 0.2s; }
+    .feature-item:hover { background: #161616; }
+    .feature-icon { font-size: 28px; margin-bottom: 18px; }
+    .feature-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .feature-desc { font-size: 14px; color: #666; line-height: 1.65; }
+
+    .process-section { padding: 96px 0; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: var(--color-border); }
+    .step { text-align: center; padding: 0 16px; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--color-surface); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--color-dark); position: relative; z-index: 1; }
+    .step.active .step-num { background: var(--color-accent); color: #fff; border-color: var(--color-accent); box-shadow: 0 0 0 6px var(--color-accent-lt); }
+    .step-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--color-dark); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--color-muted); line-height: 1.6; }
+
+    .testimonials { background: var(--color-surface); padding: 96px 0; border-top: 1px solid var(--color-border); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .testi-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 10px; padding: 32px; }
+    .testi-stars { color: var(--color-accent); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-text { font-size: 15px; color: var(--color-text); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--color-accent-lt); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--color-accent); }
+    .testi-name { font-weight: 600; font-size: 14px; color: var(--color-dark); }
+    .testi-role { font-size: 12px; color: var(--color-muted); }
+
+    .cta-banner { background: var(--color-accent); padding: 80px 0; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: #fff; line-height: 1.05; }
+    .cta-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 8px; }
+    .btn-white { background: #fff; color: var(--color-accent); font-weight: 700; }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-1px); }
+
+    footer { background: var(--color-dark); padding: 56px 0 32px; color: #888; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .footer-logo span { color: var(--color-accent); }
+    .footer-tagline { font-size: 13px; color: #555; line-height: 1.6; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 13px; color: #555; transition: color 0.15s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1E1E1E; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #444; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .products-grid, .features-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .steps::before { display: none; }
+      .nav-links { display: none; }
+      .stat-divider { display: none; }
+      .stats-inner { justify-content: center; }
+      .features-grid { gap: 0; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .cta-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#">Zufi<span>Tech</span></a>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/60139293619" class="btn btn-ghost">Contact</a>
+        <a href="#products" class="btn btn-primary">Build Yours →</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-tag">Premium Custom PCs</div>
+        <h1>Built for<br /><em>Serious</em><br />Performance.</h1>
+        <p class="hero-sub">ZufiTech engineers custom PCs to your exact needs — whether you're gaming at the top tier, rendering professionally, or pushing the limits of productivity.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">Explore Builds →</a>
+          <a href="#process" class="btn btn-ghost">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img
+          src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=900&auto=format&fit=crop&q=80"
+          alt="ZufiTech Premium Custom PC Build"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1593640408182-31c228f68b89?w=900&auto=format&fit=crop&q=80';"
+        />
+        <div class="hero-visual-label" style="position:absolute;bottom:20px;left:20px;font-size:11px;color:#fff;letter-spacing:0.08em;background:rgba(0,0,0,0.45);padding:4px 10px;border-radius:4px;">ZufiTech Signature Build</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="container stats-inner">
+      <div class="stat"><div class="stat-num">2<span>K+</span></div><div class="stat-label">Builds Shipped</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">98<span>%</span></div><div class="stat-label">Customer Satisfaction</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">5<span>yr</span></div><div class="stat-label">Warranty</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">48<span>hr</span></div><div class="stat-label">Build Turnaround</div></div>
+    </div>
+  </div>
+
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Our Builds</div>
+          <h2 class="section-title">Crafted for<br />Every Demand</h2>
+          <p class="section-sub">Three tiers, zero compromise. Every ZufiTech build is assembled, stress-tested, and benchmarked before it reaches you.</p>
+        </div>
+        
+        <div class="filter-group">
+            <button class="filter-btn active" onclick="filterData('all', this)">All</button>
+            <button class="filter-btn" onclick="filterData('gaming', this)">Gaming</button>
+            <button class="filter-btn" onclick="filterData('workstation', this)">Workstation</button>
+        </div>
+      </div>
+
+      <div id="product-grid" class="products-grid">
+         </div>
+    </div>
+  </section>
+
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-label">Why ZufiTech</div>
+      <h2 class="section-title">No Shortcuts.<br />Ever.</h2>
+      <p class="section-sub">We obsess over every component, every cable, every thermal paste spread — so your machine runs flawlessly from day one.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🧰</div>
+          <div class="feature-title">Expert Assembly</div>
+          <p class="feature-desc">Every build is assembled by certified technicians with years of hands-on experience across thousands of custom PCs.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Stress Tested</div>
+          <p class="feature-desc">We benchmark and stress-test every machine for 24 hours before shipping — you get guaranteed performance numbers.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">5-Year Warranty</div>
+          <p class="feature-desc">Industry-leading coverage on every component. If anything fails, we fix or replace it — no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner" id="contact">
+    <div class="container cta-inner">
+      <div>
+        <h2 class="cta-title">Ready to Build<br />Your Dream PC?</h2>
+        <p class="cta-sub">Talk to our team. No pressure, no jargon — just the right machine for you.</p>
+      </div>
+      <a href="https://wa.me/60139293619" target="_blank" class="btn btn-white" style="font-size: 15px; padding: 16px 32px;">
+        💬 Chat on WhatsApp →
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Zufi<span>Tech</span></div>
+          <p class="footer-tagline">Premium custom PC builds — assembled with precision, backed by experts, built to last.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">CorePro 1000</a></li>
+            <li><a href="#">ZufiPro 3000</a></li>
+            <li><a href="#">Apex Titan X</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/60139293619" target="_blank">💬 WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ZufiTech PC. All rights reserved.</p>
+        <p>Built with passion by Khairul Ammar</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
